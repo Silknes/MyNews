@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MyNews</string>
+
+    <string name="menu_drawer_title_item">Categories</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_drawer_item_top_stories">Top stories</string>
+    <string name="menu_drawer_item_most_popular">Most Popular</string>
+    <string name="menu_drawer_item_business">Business</string>
+    <string name="menu_drawer_item_it">IT</string>
+    <string name="menu_drawer_item_sport">Sport</string>
+
+    <string name="nav_header_title">MyNews</string>
+    <string name="nav_header_icon_nyt_description">NewYork Times icon</string>
+    <string name="nav_header_icon_facebook_description">Facebook icon</string>
 </resources>
