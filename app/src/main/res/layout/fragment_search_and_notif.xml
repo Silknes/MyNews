@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".Controller.Fragments.SearchAndNotifFragment">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/edit_txt_search"
+        android:id="@+id/search_notif_fragment_edit_txt_query_term"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:id="@+id/search_notif_fragment_linear_layout_date"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_view_begin_date"
+                android:textSize="16sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/search_notif_fragment_txt_begin_date"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@drawable/ic_arrow_drop_down_grey_24dp"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/search_notif_fragment_img_btn_begin_date"
+                    android:tag="10"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_view_end_date"
+                android:textSize="16sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/search_notif_fragment_txt_end_date"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@drawable/ic_arrow_drop_down_grey_24dp"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/search_notif_fragment_img_btn_end_date"
+                    android:tag="20"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/txt_invalid_statement_for_date"
+        android:textColor="@color/wrongStatement"
+        android:id="@+id/search_notif_fragment_txt_wrong_date"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_top_stories"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/search_notif_fragment_checkbox_top_stories"
+                android:tag="10"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_most_popular"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/search_notif_fragment_checkbox_most_popular"
+                android:tag="20"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_business"
+                android:textSize="16sp"
+                android:id="@+id/search_notif_fragment_checkbox_business"
+                android:tag="30"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_it"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/search_notif_fragment_checkbox_it"
+                android:tag="40"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_sport"
+                android:textSize="16sp"
+                android:id="@+id/search_notif_fragment_checkbox_sport"
+                android:tag="50"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/txt_obligation_to_select_one_checkbox"
+        android:id="@+id/search_notif_fragment_txt_obligation_to_check"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/search_notif_fragment_linear_layout_border"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/search_notif_fragment_relative_layout_enable_notif">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_view_enable_notif"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_alignParentStart="true"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/search_notif_fragment_switch_enable_notif"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/btn_search"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"
+        android:id="@+id/search_notif_fragment_btn_search"/>
+
+</LinearLayout>

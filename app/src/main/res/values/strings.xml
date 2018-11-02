@@ -5,13 +5,20 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="menu_drawer_item_top_stories">Top stories</string>
-    <string name="menu_drawer_item_most_popular">Most Popular</string>
-    <string name="menu_drawer_item_business">Business</string>
-    <string name="menu_drawer_item_it">IT</string>
-    <string name="menu_drawer_item_sport">Sport</string>
+    <string name="item_top_stories">Top stories</string>
+    <string name="item_most_popular">Most Popular</string>
+    <string name="item_business">Business</string>
+    <string name="item_it">IT</string>
+    <string name="item_sport">Sport</string>
 
-    <string name="nav_header_title">MyNews</string>
     <string name="nav_header_icon_nyt_description">NewYork Times icon</string>
     <string name="nav_header_icon_facebook_description">Facebook icon</string>
+
+    <string name="edit_txt_search">Search Query Term*</string>
+    <string name="txt_view_begin_date">Begin Date</string>
+    <string name="txt_view_end_date">End Date</string>
+    <string name="txt_view_enable_notif">Enable notifications (once per day)</string>
+    <string name="txt_invalid_statement_for_date">*Begin Date must be less than End Date</string>
+    <string name="txt_obligation_to_select_one_checkbox">*You have to selected at least one category</string>
+    <string name="btn_search">Search</string>
 </resources>

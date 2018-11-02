@@ -1,4 +1,4 @@
-package com.oc.eliott.mynews.Controller;
+package com.oc.eliott.mynews.Controller.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.item_toolbar_search:
-                //Intent intentSearch = new Intent(MainActivity.this, SearchActivity.class);
-                //startActivity(intentSearch);
+                Intent intentSearch = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intentSearch);
                 return true;
             case R.id.item_toolbar_notifications:
-                //Intent intentNotifications = new Intent(MainActivity.this, NotificationsActivity.class);
-                //startActivity(intentNotifications);
+                Intent intentNotification = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intentNotification);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
