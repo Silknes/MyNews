@@ -22,6 +22,6 @@
     <string name="txt_obligation_to_select_one_checkbox">*You have to selected at least one category</string>
     <string name="btn_search">Search</string>
 
-    <string name ="btn_help">Activity Help</string>
-    <string name ="btn_about">Activity About</string>
+    <string name="btn_help">Activity Help</string>
+    <string name="btn_about">Activity About</string>
 </resources>

@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.oc.eliott.mynews.Controller.Fragments.RecyclerViewFragment;
 import com.oc.eliott.mynews.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -28,15 +29,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static String CHANNEL_ID = "HIGH_NOTIFICATION";
     private static int NOTIFICATION_ID = 001;
 
+    private RecyclerViewFragment recyclerViewFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Calling our 3 methods that configure Toolbar, DrawerLayout and NavigationView. The last two are used to configure NavigationDrawer
         this.configureToolbar();
         this.configureDrawerLayout();
         this.configureNavigationView();
+        this.configureAndShowRecyclerViewFragment();
     }
 
     // This method make clickable the items of the Toolbar and on click start a new activity
@@ -125,5 +128,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void configureNavigationView(){
         NavigationView navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void configureAndShowRecyclerViewFragment(){
+        recyclerViewFragment = (RecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+        if (recyclerViewFragment == null) {
+            recyclerViewFragment = new RecyclerViewFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.activity_main_frame_layout, recyclerViewFragment)
+                    .commit();
+        }
     }
 }
