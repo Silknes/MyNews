@@ -7,8 +7,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.oc.eliott.mynews.Controller.Fragments.SearchAndNotifFragment;
 import com.oc.eliott.mynews.R;
+import com.oc.eliott.mynews.Utils.ActivityType;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity{
     SearchAndNotifFragment searchAndNotifFragment;
 
     @Override
@@ -18,6 +19,12 @@ public class SearchActivity extends AppCompatActivity {
 
         this.configureToolbar();
         this.configureAndShowSearchNotifFragment();
+    }
+
+    public void onResume(){
+        super.onResume();
+
+        this.buildFragmentConsideringParentActivity();
     }
 
     // This method configure the toolbar and add a up button to go back to the MainActivity
@@ -35,5 +42,12 @@ public class SearchActivity extends AppCompatActivity {
             searchAndNotifFragment = new SearchAndNotifFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.search_activity_linear_layout, searchAndNotifFragment).commit();
         }
+    }
+
+    // Update the fragment view for SearchActivity
+    private void buildFragmentConsideringParentActivity(){
+        ActivityType searchActivity = ActivityType.SEARCH;
+        searchAndNotifFragment.updateViewConsideringParentActivity(searchActivity);
+        searchAndNotifFragment.addListenerOnCheckboxConsideringParentActivity(searchActivity);
     }
 }

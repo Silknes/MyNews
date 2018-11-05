@@ -1,8 +1,14 @@
 package com.oc.eliott.mynews.Controller.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,6 +24,9 @@ import com.oc.eliott.mynews.R;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private Toolbar toolbar;            // Object Toolbar use to configure a new Toolbar (used in method configureToolbar())
     private DrawerLayout drawerLayout;  // Object DrawerLayout use to configure a new DrawerLayout (used in method configureDrawerLayout())
+
+    private static String CHANNEL_ID = "HIGH_NOTIFICATION";
+    private static int NOTIFICATION_ID = 001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_toolbar_notifications:
                 Intent intentNotification = new Intent(MainActivity.this, NotificationActivity.class);
                 startActivity(intentNotification);
+                return true;
+            case R.id.item_toolbar_help:
+                Toast.makeText(this, R.string.btn_help, Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item_toolbar_about:
+                Toast.makeText(this, R.string.btn_about, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
