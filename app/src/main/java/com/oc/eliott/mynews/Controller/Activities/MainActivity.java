@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import com.oc.eliott.mynews.Controller.Fragments.RecyclerViewFragment;
 import com.oc.eliott.mynews.R;
+import com.oc.eliott.mynews.Utils.PageAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private Toolbar toolbar;            // Object Toolbar use to configure a new Toolbar (used in method configureToolbar())
@@ -39,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureToolbar();
         this.configureDrawerLayout();
         this.configureNavigationView();
-        this.configureAndShowRecyclerViewFragment();
+        //this.configureAndShowRecyclerViewFragment();
+        this.configureViewPager();
     }
 
     // This method make clickable the items of the Toolbar and on click start a new activity
@@ -130,13 +135,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void configureAndShowRecyclerViewFragment(){
-        recyclerViewFragment = (RecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+    /*private void configureAndShowRecyclerViewFragment(){
+        recyclerViewFragment = (RecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_linear_layout);
         if (recyclerViewFragment == null) {
             recyclerViewFragment = new RecyclerViewFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.activity_main_frame_layout, recyclerViewFragment)
+                    .add(R.id.activity_main_linear_layout, recyclerViewFragment)
                     .commit();
         }
+    }*/
+
+    private void configureViewPager(){
+        ViewPager pager = (ViewPager) findViewById(R.id.activity_main_viewpager);
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager()){});
+
+        TabLayout tabs = (TabLayout)findViewById(R.id.activiy_main_tablayout);
+        tabs.setupWithViewPager(pager);
     }
 }

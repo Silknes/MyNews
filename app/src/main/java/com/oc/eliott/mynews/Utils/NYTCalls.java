@@ -61,10 +61,10 @@ public class NYTCalls {
         });
     }
 
-    public static void fetchSearchArticles(CallbacksSearch callbacks, String apiKey, String newsDesk){
+    public static void fetchSearchArticles(CallbacksSearch callbacks, String apiKey, String newsDesk, String sort){
         final WeakReference<CallbacksSearch> callbacksWeakReference = new WeakReference<CallbacksSearch>(callbacks);
         NYTService nytService = NYTService.retrofit.create(NYTService.class);
-        Call<ResultSearch> call = nytService.getFollowingSearchArticle(apiKey, newsDesk);
+        Call<ResultSearch> call = nytService.getFollowingSearchArticle(apiKey, newsDesk, sort);
         call.enqueue(new Callback<ResultSearch>() {
             @Override
             public void onResponse(Call<ResultSearch> call, Response<ResultSearch> response) {

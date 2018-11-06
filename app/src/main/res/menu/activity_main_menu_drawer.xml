@@ -19,7 +19,7 @@
                     android:id="@+id/drawer_business"
                     android:icon="@drawable/ic_business_grey_24dp"/>
                 <item
-                    android:title="@string/item_it"
+                    android:title="@string/item_food"
                     android:id="@+id/drawer_it"
                     android:icon="@drawable/ic_computer_grey_24dp"/>
                 <item

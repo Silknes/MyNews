@@ -22,7 +22,8 @@ public interface NYTService {
 
     @GET("search/v2/articlesearch.json")
     Call<ResultSearch> getFollowingSearchArticle(@Query("api-key") String apiKey,
-                                                 @Query("fq") String newsDesk);
+                                                 @Query("fq") String newsDesk,
+                                                 @Query("sort") String sort);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/svc/")

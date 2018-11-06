@@ -35,7 +35,7 @@ public class NYTAdapter extends RecyclerView.Adapter<NYTViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull NYTViewHolder viewHolder, int position) {
-        viewHolder.updateWithMostPopularArticles(this.articleList.get(position), this.glide);
+        viewHolder.updateWithArticles(this.articleList.get(position), this.glide);
     }
 
     @Override
