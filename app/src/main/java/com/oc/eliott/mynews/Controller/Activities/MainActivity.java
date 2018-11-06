@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureToolbar();
         this.configureDrawerLayout();
         this.configureNavigationView();
-        //this.configureAndShowRecyclerViewFragment();
         this.configureViewPager();
     }
 
@@ -134,16 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
-    /*private void configureAndShowRecyclerViewFragment(){
-        recyclerViewFragment = (RecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_linear_layout);
-        if (recyclerViewFragment == null) {
-            recyclerViewFragment = new RecyclerViewFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.activity_main_linear_layout, recyclerViewFragment)
-                    .commit();
-        }
-    }*/
 
     private void configureViewPager(){
         ViewPager pager = (ViewPager) findViewById(R.id.activity_main_viewpager);

@@ -1,6 +1,7 @@
 package com.oc.eliott.mynews.Controller.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,16 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.oc.eliott.mynews.Controller.Activities.WebViewActivity;
 import com.oc.eliott.mynews.Model.Article;
 import com.oc.eliott.mynews.Model.MostPopular.ResultMostPopular;
 import com.oc.eliott.mynews.Model.Search.ResultSearch;
 import com.oc.eliott.mynews.Model.TopStories.ResultTopStories;
 import com.oc.eliott.mynews.R;
 import com.oc.eliott.mynews.Utils.NYTCalls;
+import com.oc.eliott.mynews.View.ItemClickSupport;
 import com.oc.eliott.mynews.View.NYTAdapter;
 
 import java.util.ArrayList;
@@ -60,19 +62,34 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
 
         this.configureRecyclerView();
         this.fetchArticles(position);
+        this.configureOnClickRecyclerView();
 
         return view;
     }
 
+    // Set onClick on RecyclerView item
+    private void configureOnClickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.fragment_recycler_view_item)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        String url = NYTAdapter.getUrl(position);
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra("url", url);
+                        startActivity(intent);
+                    }
+                });
+    }
+
     // Configure RecyclerView
-    private void configureRecyclerView(){
+    public void configureRecyclerView(){
         this.articles = new ArrayList<Article>();
         this.NYTAdapter = new NYTAdapter(articles, Glide.with(this));
         this.recyclerView.setAdapter(this.NYTAdapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    private void fetchArticles(int position) {
+    public void fetchArticles(int position) {
         String news_desk;
         switch(position){
             case 0 :
