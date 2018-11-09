@@ -23,6 +23,9 @@ public interface NYTService {
     @GET("search/v2/articlesearch.json")
     Call<ResultSearch> getFollowingSearchArticle(@Query("api-key") String apiKey,
                                                  @Query("fq") String newsDesk,
+                                                 @Query("q") String queryTerm,
+                                                 @Query("begin_date") String beginDate,
+                                                 @Query("end_date") String endDate,
                                                  @Query("sort") String sort);
 
     public static final Retrofit retrofit = new Retrofit.Builder()

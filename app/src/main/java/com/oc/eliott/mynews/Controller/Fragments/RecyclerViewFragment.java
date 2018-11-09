@@ -23,7 +23,9 @@ import com.oc.eliott.mynews.Utils.NYTCalls;
 import com.oc.eliott.mynews.View.ItemClickSupport;
 import com.oc.eliott.mynews.View.NYTAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -89,8 +91,13 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    // Call the good API according to the page of the TabLayout
     public void fetchArticles(int position) {
         String news_desk;
+        String queryTerm = null;
+        String beginDate = "19820101";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String endDate = simpleDateFormat.format(new Date());
         switch(position){
             case 0 :
                 NYTCalls.fetchTopStoriesArticles(this, "7a0743e89dda4664b7925d78d94f9ea2");
@@ -100,15 +107,15 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
                 break;
             case 2 :
                 news_desk = "news_desk:(\"Business\")";
-                NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", news_desk, "newest");
+                NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", news_desk, queryTerm, beginDate, endDate, "newest");
                 break;
             case 3 :
                 news_desk = "news_desk:(\"Food\")";
-                NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", news_desk, "newest");
+                NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", news_desk, queryTerm, beginDate, endDate, "newest");
                 break;
             case 4 :
                 news_desk = "news_desk:(\"Sports\")";
-                NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", news_desk, "newest");
+                NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", news_desk, queryTerm, beginDate, endDate, "newest");
                 break;
             default :
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
@@ -116,6 +123,8 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
         }
     }
 
+
+    // Override onResponse and onFailure for each API and get the List of Articles contains in the result to update the view
     @Override
     public void onResponseMostPopular(@Nullable ResultMostPopular result) {
         if(result != null) {
@@ -149,6 +158,7 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
     @Override
     public void onFailureSearch() { }
 
+    // Method that take a List and use it to update the view (NYTAdapter then RecyclerView) with the good information
     private void updateUI(List<? extends Article> article){
         List<? extends Article> articleList = article;
         articles.addAll(articleList);

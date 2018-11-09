@@ -36,6 +36,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.Activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".Controller.Activities.ResultSearchActivity"
+            android:label="Result Search"
+            android:parentActivityName=".Controller.Activities.SearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Controller.Activities.MainActivity"/>
+        </activity>
         <activity android:name=".Controller.Activities.WebViewActivity"></activity>
     </application>
 

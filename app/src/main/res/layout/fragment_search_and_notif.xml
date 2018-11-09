@@ -11,8 +11,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:hint="@string/edit_txt_search"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/colorPrimary"
         android:inputType="text"
         android:id="@+id/search_notif_fragment_edit_txt_query_term"/>
 
@@ -57,8 +58,7 @@
                     android:background="@null"
                     android:src="@drawable/ic_arrow_drop_down_grey_24dp"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/search_notif_fragment_img_btn_begin_date"
-                    android:tag="10"/>
+                    android:id="@+id/search_notif_fragment_img_btn_begin_date"/>
 
             </RelativeLayout>
 
@@ -144,19 +144,19 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/item_top_stories"
+                android:text="@string/item_jobs"
                 android:textSize="16sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/search_notif_fragment_checkbox_top_stories"
+                android:id="@+id/search_notif_fragment_checkbox_jobs"
                 android:tag="10"/>
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/item_most_popular"
+                android:text="@string/item_national"
                 android:textSize="16sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/search_notif_fragment_checkbox_most_popular"
+                android:id="@+id/search_notif_fragment_checkbox_national"
                 android:tag="20"/>
 
             <CheckBox
@@ -181,7 +181,7 @@
                 android:text="@string/item_food"
                 android:textSize="16sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/search_notif_fragment_checkbox_it"
+                android:id="@+id/search_notif_fragment_checkbox_food"
                 android:tag="40"/>
 
             <CheckBox
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/item_sport"
                 android:textSize="16sp"
-                android:id="@+id/search_notif_fragment_checkbox_sport"
+                android:id="@+id/search_notif_fragment_checkbox_sports"
                 android:tag="50"/>
 
         </LinearLayout>
@@ -247,7 +247,7 @@
         android:text="@string/btn_search"
         android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:id="@+id/search_notif_fragment_btn_search"/>
 
 </LinearLayout>
