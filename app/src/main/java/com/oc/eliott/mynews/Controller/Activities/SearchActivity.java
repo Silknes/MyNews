@@ -5,12 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.oc.eliott.mynews.Controller.Fragments.SearchAndNotifFragment;
+import com.oc.eliott.mynews.Controller.Fragments.SearchFragment;
 import com.oc.eliott.mynews.R;
-import com.oc.eliott.mynews.Utils.ActivityType;
 
 public class SearchActivity extends AppCompatActivity{
-    SearchAndNotifFragment searchAndNotifFragment;
+    SearchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +18,6 @@ public class SearchActivity extends AppCompatActivity{
 
         this.configureToolbar();
         this.configureAndShowSearchNotifFragment();
-    }
-
-    public void onResume(){
-        super.onResume();
-
-        this.buildFragmentConsideringParentActivity();
     }
 
     // This method configure the toolbar and add a up button to go back to the MainActivity
@@ -37,17 +30,10 @@ public class SearchActivity extends AppCompatActivity{
 
     // This method set the fragment for this activity
     private void configureAndShowSearchNotifFragment(){
-        searchAndNotifFragment = (SearchAndNotifFragment) getSupportFragmentManager().findFragmentById(R.id.search_activity_linear_layout);
-        if(searchAndNotifFragment == null){
-            searchAndNotifFragment = new SearchAndNotifFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.search_activity_linear_layout, searchAndNotifFragment).commit();
+        searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.search_activity_linear_layout);
+        if(searchFragment == null){
+            searchFragment = new SearchFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.search_activity_linear_layout, searchFragment).commit();
         }
-    }
-
-    // Update the fragment view for SearchActivity
-    private void buildFragmentConsideringParentActivity(){
-        ActivityType searchActivity = ActivityType.SEARCH;
-        searchAndNotifFragment.updateViewConsideringParentActivity(searchActivity);
-        searchAndNotifFragment.addListenerOnCheckboxConsideringParentActivity(searchActivity);
     }
 }

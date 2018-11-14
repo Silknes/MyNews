@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;            // Object Toolbar use to configure a new Toolbar (used in method configureToolbar())
     private DrawerLayout drawerLayout;  // Object DrawerLayout use to configure a new DrawerLayout (used in method configureDrawerLayout())
 
-    private static String CHANNEL_ID = "HIGH_NOTIFICATION";
-    private static int NOTIFICATION_ID = 001;
+    public static final String CHANNEL_ID = "HIGH_NOTIFICATION";
+    public static final int NOTIFICATION_ID = 001;
 
     private RecyclerViewFragment recyclerViewFragment;
     private TabLayout tabs;

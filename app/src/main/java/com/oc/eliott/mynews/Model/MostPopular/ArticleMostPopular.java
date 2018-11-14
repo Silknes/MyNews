@@ -180,11 +180,6 @@ public class ArticleMostPopular extends Article {
     }
 
     @Override
-    public String getArticleAbstract() {
-        return getAbstract();
-    }
-
-    @Override
     public String getArticleDate() {
         return getPublishedDate();
     }

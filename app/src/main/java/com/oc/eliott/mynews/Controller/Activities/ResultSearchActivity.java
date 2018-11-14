@@ -44,7 +44,7 @@ public class ResultSearchActivity extends AppCompatActivity implements NYTCalls.
         setContentView(R.layout.activity_result_search);
         ButterKnife.bind(this);
 
-        // Set default values for the 2 dates
+        // Set default values for endDate
         Calendar cal = Calendar.getInstance();
         long defaultEndDate = Long.parseLong("" + cal.get(Calendar.YEAR) + (cal.get(Calendar.MONTH) + 1) + cal.get(Calendar.DAY_OF_MONTH));
 

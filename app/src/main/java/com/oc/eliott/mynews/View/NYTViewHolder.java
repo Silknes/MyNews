@@ -25,19 +25,14 @@ public class NYTViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void updateWithArticles(Article article, RequestManager glide){
-        this.section.setText(article.getArticleSection());
+        if(article.getArticleSection() != null) this.section.setText(article.getArticleSection());
+        else this.section.setText("Misc.");
 
         this.title.setText(article.getArticleTitle());
 
-        this.date.setText(formatTheDate(article));
+        this.date.setText(article.formatTheDate());
 
         if(article.getArticleURLImage() != null) glide.load(article.getArticleURLImage()).into(icnArticle);
         else this.icnArticle.setVisibility(View.GONE);
-    }
-
-    private String formatTheDate(Article article){
-        String date = article.getArticleDate();
-        date = date.substring(0,4) + "/" + date.substring(5,7) + "/" + date.substring(8,10);
-        return date;
     }
 }

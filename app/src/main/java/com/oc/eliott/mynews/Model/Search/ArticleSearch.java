@@ -249,11 +249,6 @@ public class ArticleSearch extends Article {
     }
 
     @Override
-    public String getArticleAbstract() {
-        return getAbstract();
-    }
-
-    @Override
     public String getArticleDate() {
         return getPubDate();
     }

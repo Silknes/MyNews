@@ -2,96 +2,47 @@ package com.oc.eliott.mynews.Controller.Fragments;
 
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.oc.eliott.mynews.Controller.Activities.ResultSearchActivity;
 import com.oc.eliott.mynews.R;
-import com.oc.eliott.mynews.Utils.ActivityType;
-import com.oc.eliott.mynews.Utils.NYTCalls;
 
 import java.util.Calendar;
 
-public class SearchAndNotifFragment extends Fragment {
-    private View linearLayoutDate, linearLayoutBorder;
-    private RelativeLayout relativeLayoutEnableNotif;
-    private Button btnSearch;
-    private ImageButton imageButtonBeginDate, imageButtonEndDate;
-    private TextView txtBeginDate, txtEndDate, txtWrongDate, obligationToCheck;
+public class SearchFragment extends BasicFragment{
 
-    private EditText editTextQueryTerm;
-    private CheckBox checkBoxJobs, checkBoxNational, checkBoxBusiness, checkBoxFood, checkBoxSports;
-    private Switch switchEnableNotif;
-    private boolean isSwitchCheckedBoolean;
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
-
-    private DatePickerDialog.OnDateSetListener mDateSetListenerBeginDate;
-    private DatePickerDialog.OnDateSetListener mDateSetListenerEndDate;
-    private int year, month, day;
-
-    private long longBeginDate, longEndDate;
     private String queryTerm, newsDesk;
+    private DatePickerDialog.OnDateSetListener mDateSetListenerBeginDate, mDateSetListenerEndDate;
+    private int year, month, day;
+    private long longBeginDate, longEndDate;
 
-    public static final String KEY_PREFERENCES_IS_SWITCH_CHECKED_BOOLEAN = "KEY_PREFERENCES_IS_SWITCH_CHECKED_BOOLEAN";
-    public static final String KEY_PREFERENCES_CHECKBOX_JOBS = "KEY_PREFERENCES_CHECKBOX_JOBS";
-    public static final String KEY_PREFERENCES_CHECKBOX_NATIONAL = "KEY_PREFERENCES_CHECKBOX_NATIONAL";
-    public static final String KEY_PREFERENCES_CHECKBOX_BUSINESS = "KEY_PREFERENCES_CHECKBOX_BUSINESS";
-    public static final String KEY_PREFERENCES_CHECKBOX_FOOD = "KEY_PREFERENCES_CHECKBOX_FOOD";
-    public static final String KEY_PREFERENCES_CHECKBOX_SPORTS = "KEY_PREFERENCES_CHECKBOX_SPORTS";
-
-    public SearchAndNotifFragment() { }
+    public SearchFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_search_and_notif, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        this.linearLayoutDate = view.findViewById(R.id.search_notif_fragment_linear_layout_date);
-        this.linearLayoutBorder = view.findViewById(R.id.search_notif_fragment_linear_layout_border);
-        this.relativeLayoutEnableNotif = view.findViewById(R.id.search_notif_fragment_relative_layout_enable_notif);
-        this.btnSearch = view.findViewById(R.id.search_notif_fragment_btn_search);
-
-        this.imageButtonBeginDate = view.findViewById(R.id.search_notif_fragment_img_btn_begin_date);
-        this.imageButtonEndDate = view.findViewById(R.id.search_notif_fragment_img_btn_end_date);
-        this.txtBeginDate = view.findViewById(R.id.search_notif_fragment_txt_begin_date);
-        this.txtEndDate = view.findViewById(R.id.search_notif_fragment_txt_end_date);
-        this.txtWrongDate = view.findViewById(R.id.search_notif_fragment_txt_wrong_date);
-        this.obligationToCheck = view.findViewById(R.id.search_notif_fragment_txt_obligation_to_check);
-
-        this.editTextQueryTerm = view.findViewById(R.id.search_notif_fragment_edit_txt_query_term);
-        this.checkBoxJobs = view.findViewById(R.id.search_notif_fragment_checkbox_jobs);
-        this.checkBoxNational = view.findViewById(R.id.search_notif_fragment_checkbox_national);
-        this.checkBoxBusiness = view.findViewById(R.id.search_notif_fragment_checkbox_business);
-        this.checkBoxFood = view.findViewById(R.id.search_notif_fragment_checkbox_food);
-        this.checkBoxSports = view.findViewById(R.id.search_notif_fragment_checkbox_sports);
-
-        this.switchEnableNotif = view.findViewById(R.id.search_notif_fragment_switch_enable_notif);
-
-        // Preferences are used to save the state of all checkbox
-        preferences = this.getActivity().getPreferences(Context.MODE_PRIVATE);
-        editor = preferences.edit();
+        this.bindView(view);
+        this.updateView();
 
         // The button for search activity is disabled by default
         btnSearch.setEnabled(false);
+
+        queryTerm = editTextQueryTerm.getText().toString();
 
         /* Set default value for longBeginDate and longEndDate
         so if user don't enter a value for them we can still compare the date */
@@ -101,37 +52,37 @@ public class SearchAndNotifFragment extends Fragment {
             longEndDate = Long.parseLong("" + cal.get(Calendar.YEAR) + (cal.get(Calendar.MONTH) + 1) + "0" + cal.get(Calendar.DAY_OF_MONTH));
         else longEndDate = Long.parseLong("" + cal.get(Calendar.YEAR) + (cal.get(Calendar.MONTH) + 1) + cal.get(Calendar.DAY_OF_MONTH));
 
+        // Add a TextWatcher to verify that the user enter something and get it
         this.addTextWatcherOnEditTextQueryTerm();
+
+        // Add a Listener to each Checkbox to know if they are checked or not
+        this.addListenerOnCheckBoxNotifActivity(checkBoxJobs);
+        this.addListenerOnCheckBoxNotifActivity(checkBoxNational);
+        this.addListenerOnCheckBoxNotifActivity(checkBoxBusiness);
+        this.addListenerOnCheckBoxNotifActivity(checkBoxFood);
+        this.addListenerOnCheckBoxNotifActivity(checkBoxSports);
+
+        // Add a Listener to open a DatePickerDialog to set the date
         this.addListenerToSetEachDate(imageButtonBeginDate);
         this.addListenerToSetEachDate(imageButtonEndDate);
-        this.onSwitchStateChange();
-        this.isSwitchChecked();
+
+        // Add a listener to the search button to open the ResultSearchActivity
         this.btnSearchOnClick();
 
         return view;
     }
 
-    // Used to update the view according to the parent activity
-    public void updateViewConsideringParentActivity(ActivityType activityType){
-        if(activityType.toString().equals(ActivityType.SEARCH.toString())){
-            this.linearLayoutBorder.setVisibility(View.GONE);
-            this.relativeLayoutEnableNotif.setVisibility(View.GONE);
-        }
-        if(activityType.toString().equals(ActivityType.NOTIFICATION.toString())){
-            this.linearLayoutDate.setVisibility(View.GONE);
-            this.btnSearch.setVisibility(View.GONE);
-            this.obligationToCheck.setVisibility(View.GONE);
-        }
-        this.txtWrongDate.setVisibility(View.GONE);
+    // This method bind the view of the BasicFragment
+    @Override
+    protected void bindView(View view) {
+        super.bindView(view);
     }
 
-    // Add listener for each checkbox and save the state of the checkbox if we are in the NotificationActivity
-    public void addListenerOnCheckboxConsideringParentActivity(ActivityType activityType){
-        this.addListenerOnCheckBoxNotifActivity(checkBoxJobs,KEY_PREFERENCES_CHECKBOX_JOBS, activityType);
-        this.addListenerOnCheckBoxNotifActivity(checkBoxNational, KEY_PREFERENCES_CHECKBOX_NATIONAL, activityType);
-        this.addListenerOnCheckBoxNotifActivity(checkBoxBusiness, KEY_PREFERENCES_CHECKBOX_BUSINESS, activityType);
-        this.addListenerOnCheckBoxNotifActivity(checkBoxFood, KEY_PREFERENCES_CHECKBOX_FOOD, activityType);
-        this.addListenerOnCheckBoxNotifActivity(checkBoxSports, KEY_PREFERENCES_CHECKBOX_SPORTS, activityType);
+    // Disable some views of BasicFragment because we are in the SearchFragment
+    private void updateView(){
+        this.linearLayoutBorder.setVisibility(View.GONE);
+        this.relativeLayoutEnableNotif.setVisibility(View.GONE);
+        this.txtWrongDate.setVisibility(View.GONE);
     }
 
     // Method that add a TextWatcher on the EditText
@@ -141,6 +92,7 @@ public class SearchAndNotifFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                queryTerm = s.toString().trim();
                 // if all the conditions return true then the button becomes enable
                 if(isQueryTermEditTextEmpty() && isCheckBoxChecked() && isDatesCorrect()) {
                     btnSearch.setEnabled(true);
@@ -154,16 +106,11 @@ public class SearchAndNotifFragment extends Fragment {
 
     // Return true if the EditText isn't empty and if it only contains spaces
     private boolean isQueryTermEditTextEmpty(){
-        if(!editTextQueryTerm.toString().isEmpty()){
-            queryTerm = editTextQueryTerm.getText().toString().trim();
-            if(queryTerm.isEmpty()) return false;
-            else return true;
-        }
-        else return false;
+        return !queryTerm.isEmpty();
     }
 
     // Add a Listener on each checkBox
-    private void addListenerOnCheckBoxNotifActivity(final CheckBox checkBox, final String keyCheckBox, final ActivityType activityType){
+    private void addListenerOnCheckBoxNotifActivity(final CheckBox checkBox){
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -172,31 +119,17 @@ public class SearchAndNotifFragment extends Fragment {
                     btnSearch.setEnabled(true);
                 }
                 else btnSearch.setEnabled(false);
-
-                // If we are in the NotificationActivity then we save the state of the checkbox
-                if(activityType.toString().equals(ActivityType.NOTIFICATION.toString()))
-                    editor.putBoolean(keyCheckBox, checkBox.isChecked()).apply();
             }
         });
-        // If we are in the NotificationActivity then we set the good state for each checkbox when the activity is starting
-        if(activityType.toString().equals(ActivityType.NOTIFICATION.toString())){
-            boolean isCheckBoxChecked = getActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(keyCheckBox, false);
-            checkBox.setChecked(isCheckBoxChecked);
-        }
     }
 
     // If at least one checkbox is checked then this method return true
     private boolean isCheckBoxChecked(){
-        boolean booleanCheckBoxChecked;
-
-        if(checkBoxJobs.isChecked() ||
+        return checkBoxJobs.isChecked() ||
                 checkBoxNational.isChecked() ||
                 checkBoxBusiness.isChecked() ||
                 checkBoxFood.isChecked() ||
-                checkBoxSports.isChecked()) booleanCheckBoxChecked = true;
-        else booleanCheckBoxChecked = false;
-
-        return booleanCheckBoxChecked;
+                checkBoxSports.isChecked();
     }
 
     // Add a listener for each date to open a DatePickerDialog on click
@@ -267,12 +200,7 @@ public class SearchAndNotifFragment extends Fragment {
 
     // Compare the two dates and if EndDate is superior to BeginDate then return true
     private boolean isDatesCorrect(){
-        boolean booleanIsDateCorrect;
-
-        if(longEndDate >= longBeginDate) booleanIsDateCorrect = true;
-        else booleanIsDateCorrect = false;
-
-        return booleanIsDateCorrect;
+        return longEndDate >= longBeginDate;
     }
 
     // Use to get all the category that the use want according to the state of each checkbox
@@ -301,27 +229,5 @@ public class SearchAndNotifFragment extends Fragment {
                 startActivity(intent);
             }
         });
-    }
-
-    // Add a listener to the switch
-    private void onSwitchStateChange(){
-        switchEnableNotif.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // if the switch is checked then return true else return false
-                if(switchEnableNotif.isChecked()) isSwitchCheckedBoolean = true;
-                else isSwitchCheckedBoolean = false;
-                // Save the return in the preferences
-                editor.putBoolean(KEY_PREFERENCES_IS_SWITCH_CHECKED_BOOLEAN, isSwitchCheckedBoolean);
-                editor.apply();
-            }
-        });
-    }
-
-    // Get back the value in the preferences for the switch, if it's true then the switch becomes checked else it's unchecked
-    private void isSwitchChecked(){
-        isSwitchCheckedBoolean = getActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(KEY_PREFERENCES_IS_SWITCH_CHECKED_BOOLEAN, false);
-        if(isSwitchCheckedBoolean) switchEnableNotif.setChecked(true);
-        else switchEnableNotif.setChecked(false);
     }
 }
