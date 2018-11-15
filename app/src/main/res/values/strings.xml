@@ -33,4 +33,6 @@
     <string name="menu_toolbar_notifications">Notifications</string>
     <string name="menu_toolbar_help">Help</string>
     <string name="menu_toolbar_about">About</string>
+
+    <string name="section_default_txt">Misc.</string>
 </resources>

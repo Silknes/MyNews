@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -28,9 +33,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="b5b5b5" />
-                            <entry key="outputName" value="ic_arrow_drop_down_grey_24dp" />
-                            <entry key="sourceFile" value="C:\Users\Eliott" />
+                            <entry key="outputName" value="icn_nyt_black_default_icn" />
+                            <entry key="sourceFile" value="D:\Documents\OC\MyNews\app\src\main\res\drawable\icn_nyt_black_default_icn.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -27,7 +27,7 @@ public class NYTViewHolder extends RecyclerView.ViewHolder{
     // Method that update the view of each item with the value get from the API
     public void updateWithArticles(Article article, RequestManager glide){
         if(article.getArticleSection() != null) this.section.setText(article.getArticleSection());
-        else this.section.setText("Misc.");
+        else this.section.setText(R.string.section_default_txt);
 
         this.title.setText(article.getArticleTitle());
 
