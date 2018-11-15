@@ -2,6 +2,7 @@ package com.oc.eliott.mynews.Controller.Fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +21,12 @@ import com.oc.eliott.mynews.R;
  * A simple {@link Fragment} subclass.
  */
 public class BasicFragment extends Fragment {
+    // Bind all the view that is used in ChildFragment
     protected View linearLayoutDate, linearLayoutBorder;
     protected RelativeLayout relativeLayoutEnableNotif;
     protected Button btnSearch;
     protected ImageButton imageButtonBeginDate, imageButtonEndDate;
     protected TextView txtBeginDate, txtEndDate, txtWrongDate, obligationToCheck;
-
     protected EditText editTextQueryTerm;
     protected CheckBox checkBoxJobs, checkBoxNational, checkBoxBusiness, checkBoxFood, checkBoxSports;
     protected Switch switchEnableNotif;
@@ -33,7 +34,7 @@ public class BasicFragment extends Fragment {
     public BasicFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_basic, container, false);

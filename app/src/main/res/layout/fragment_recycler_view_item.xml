@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/fragment_main_item_date"
                 android:layout_alignParentEnd="true"
-                android:text="date"
+                android:text="@string/recycler_view_item_date"
                 android:textColor="@android:color/black"/>
 
         </RelativeLayout>

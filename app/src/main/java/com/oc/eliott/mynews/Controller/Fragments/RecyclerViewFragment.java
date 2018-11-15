@@ -3,6 +3,7 @@ package com.oc.eliott.mynews.Controller.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,14 +37,15 @@ import butterknife.ButterKnife;
  */
 public class RecyclerViewFragment extends Fragment implements NYTCalls.CallbacksTopStories, NYTCalls.CallbacksMostPopular, NYTCalls.CallbacksSearch{
 
-    private static final String KEY_POSITION = "KEY_POSITION";
+    private static final String KEY_POSITION = "KEY_POSITION"; // Use to save the position
 
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
-    private List<Article> articles;
+    private List<Article> articles; // Receive the object return by the API
     private NYTAdapter NYTAdapter;
 
     public RecyclerViewFragment() {}
 
+    // Instanciate a new RecyclerViewFragment with the position
     public static RecyclerViewFragment newInstance(int position){
         RecyclerViewFragment frag = new RecyclerViewFragment();
         Bundle args = new Bundle();
@@ -54,14 +56,16 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         ButterKnife.bind(this, view);
 
+        // Get the position
         int position = getArguments().getInt(KEY_POSITION, -1);
 
+        // Configure the recyclerView, call the good API according to the position, and setup a click on each item
         this.configureRecyclerView();
         this.fetchArticles(position);
         this.configureOnClickRecyclerView();
@@ -85,7 +89,7 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
 
     // Configure RecyclerView
     public void configureRecyclerView(){
-        this.articles = new ArrayList<Article>();
+        this.articles = new ArrayList<>();
         this.NYTAdapter = new NYTAdapter(articles, Glide.with(this));
         this.recyclerView.setAdapter(this.NYTAdapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

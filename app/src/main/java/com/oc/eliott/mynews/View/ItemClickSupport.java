@@ -3,6 +3,7 @@ package com.oc.eliott.mynews.View;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+// Class that configure the click on each item of the recyclerView
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;

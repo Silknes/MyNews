@@ -9,7 +9,7 @@ import com.oc.eliott.mynews.Controller.Fragments.SearchFragment;
 import com.oc.eliott.mynews.R;
 
 public class SearchActivity extends AppCompatActivity{
-    SearchFragment searchFragment;
+    SearchFragment searchFragment; // Use to set the SearchFragment to this Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

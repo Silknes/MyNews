@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+// Class where we describe the structure of each url need by the API
 public interface NYTService {
     @GET("topstories/v2/home.json")
     Call<ResultTopStories> getFollowingTSArticle(@Query("api-key") String apiKey);

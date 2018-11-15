@@ -1,5 +1,7 @@
 package com.oc.eliott.mynews.Model.TopStories;
 
+import android.widget.Toast;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.oc.eliott.mynews.Model.Article;

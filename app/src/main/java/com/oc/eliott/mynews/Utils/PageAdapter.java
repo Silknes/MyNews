@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.oc.eliott.mynews.Controller.Fragments.RecyclerViewFragment;
 import com.oc.eliott.mynews.R;
 
+// Class that configure the PageAdapter
 public class PageAdapter extends FragmentPagerAdapter{
 
     public PageAdapter(FragmentManager mgr){

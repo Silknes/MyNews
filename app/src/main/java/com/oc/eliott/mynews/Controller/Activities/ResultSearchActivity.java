@@ -19,10 +19,8 @@ import com.oc.eliott.mynews.Utils.NYTCalls;
 import com.oc.eliott.mynews.View.ItemClickSupport;
 import com.oc.eliott.mynews.View.NYTAdapter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,10 +28,7 @@ import butterknife.ButterKnife;
 
 public class ResultSearchActivity extends AppCompatActivity implements NYTCalls.CallbacksSearch{
 
-    // These values are the value wich contain the value pass by SearchAndNotifFragment
-    private String queryTerm, newsDesk, longBeginDate, longEndDate;
-
-    @BindView(R.id.activity_result_search_recycler_view)
+    @BindView(R.id.activity_result_search_recycler_view) // Use to display all the articles return by the search
     RecyclerView recyclerView; // Use to configure the RecyclerView
     private List<Article> articles; // This value contain the List of Article get from the API
     private NYTAdapter NYTAdapter; // Use to configure the NYTAdapter that plug it with the recyclerview
@@ -48,11 +43,11 @@ public class ResultSearchActivity extends AppCompatActivity implements NYTCalls.
         Calendar cal = Calendar.getInstance();
         long defaultEndDate = Long.parseLong("" + cal.get(Calendar.YEAR) + (cal.get(Calendar.MONTH) + 1) + cal.get(Calendar.DAY_OF_MONTH));
 
-        // Get all the value pass from SearchAndNotifFragment
-        longBeginDate = "" + getIntent().getLongExtra("BEGIN_DATE", 19820101);
-        longEndDate = "" + getIntent().getLongExtra("END_DATE", defaultEndDate);
-        queryTerm = getIntent().getStringExtra("QUERY_TERM");
-        newsDesk = getIntent().getStringExtra("NEWS_DESK");
+        // Get all the value pass from SearchFragment
+        String longBeginDate = "" + getIntent().getLongExtra("BEGIN_DATE", 19820101);
+        String longEndDate = "" + getIntent().getLongExtra("END_DATE", defaultEndDate);
+        String queryTerm = getIntent().getStringExtra("QUERY_TERM");
+        String newsDesk = getIntent().getStringExtra("NEWS_DESK");
 
         // We configure the toolbar, the recyclerview, make the call with the good parameter and set the click for each item
         this.configureToolbar();
@@ -66,7 +61,7 @@ public class ResultSearchActivity extends AppCompatActivity implements NYTCalls.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        if(ab != null) ab.setDisplayHomeAsUpEnabled(true);
     }
 
     // Set onClick on RecyclerView item
@@ -85,12 +80,13 @@ public class ResultSearchActivity extends AppCompatActivity implements NYTCalls.
 
     // Configure RecyclerView
     public void configureRecyclerView(){
-        this.articles = new ArrayList<Article>();
+        this.articles = new ArrayList<>();
         this.NYTAdapter = new NYTAdapter(articles, Glide.with(this));
         this.recyclerView.setAdapter(this.NYTAdapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // This method create a call to the SearchAPI with the parameters enter by the user
     public void fetchArticles(String beginDate, String endDate, String queryTerm, String newsDesk) {
         NYTCalls.fetchSearchArticles(this, "7a0743e89dda4664b7925d78d94f9ea2", newsDesk, queryTerm, beginDate, endDate, "newest");
     }
@@ -114,8 +110,7 @@ public class ResultSearchActivity extends AppCompatActivity implements NYTCalls.
 
     // Method that take a List and use it to update the view (NYTAdapter then RecyclerView) with the good information
     private void updateUI(List<? extends Article> article){
-        List<? extends Article> articleList = article;
-        articles.addAll(articleList);
+        articles.addAll(article);
         NYTAdapter.notifyDataSetChanged();
     }
 }

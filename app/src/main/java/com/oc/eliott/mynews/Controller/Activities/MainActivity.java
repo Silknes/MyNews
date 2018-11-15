@@ -1,17 +1,10 @@
 package com.oc.eliott.mynews.Controller.Activities;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.oc.eliott.mynews.Controller.Fragments.RecyclerViewFragment;
 import com.oc.eliott.mynews.R;
 import com.oc.eliott.mynews.Utils.PageAdapter;
 
@@ -30,12 +22,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;            // Object Toolbar use to configure a new Toolbar (used in method configureToolbar())
     private DrawerLayout drawerLayout;  // Object DrawerLayout use to configure a new DrawerLayout (used in method configureDrawerLayout())
 
-    public static final String CHANNEL_ID = "HIGH_NOTIFICATION";
-    public static final int NOTIFICATION_ID = 001;
-
-    private RecyclerViewFragment recyclerViewFragment;
-    private TabLayout tabs;
-    private ViewPager pager;
+    private TabLayout tabs; // TabLayout is used to have tab for each category
+    private ViewPager pager; // ViewPager is used to display the result of each call
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,10 +131,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Configure the PageAdapter and TabLayout to work together
     private void configureViewPager(){
-        pager = (ViewPager) findViewById(R.id.activity_main_viewpager);
+        pager = findViewById(R.id.activity_main_viewpager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()){});
 
-        tabs = (TabLayout)findViewById(R.id.activiy_main_tablayout);
+        tabs = findViewById(R.id.activiy_main_tablayout);
         tabs.setupWithViewPager(pager);
     }
 

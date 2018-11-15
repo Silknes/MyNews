@@ -24,6 +24,7 @@ public class NYTViewHolder extends RecyclerView.ViewHolder{
         icnArticle = itemView.findViewById(R.id.fragment_main_item_image_article);
     }
 
+    // Method that update the view of each item with the value get from the API
     public void updateWithArticles(Article article, RequestManager glide){
         if(article.getArticleSection() != null) this.section.setText(article.getArticleSection());
         else this.section.setText("Misc.");
@@ -33,6 +34,6 @@ public class NYTViewHolder extends RecyclerView.ViewHolder{
         this.date.setText(article.formatTheDate());
 
         if(article.getArticleURLImage() != null) glide.load(article.getArticleURLImage()).into(icnArticle);
-        else this.icnArticle.setVisibility(View.GONE);
+        else this.icnArticle.setImageResource(R.drawable.icn_nyt_black_default_icn);
     }
 }

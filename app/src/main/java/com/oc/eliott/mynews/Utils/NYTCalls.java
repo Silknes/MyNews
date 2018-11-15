@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// Class where we configure all the call send to each API
 public class NYTCalls {
     public interface CallbacksTopStories {
         void onResponseTopStories(@Nullable ResultTopStories resultTS);
