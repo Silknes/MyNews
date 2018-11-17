@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class SearchFragment extends BasicFragment{
 
-    private String queryTerm, newsDesk;
+    private String queryTerm, newsDesk, monthStr;
     private DatePickerDialog.OnDateSetListener mDateSetListenerBeginDate, mDateSetListenerEndDate;
     private int year, month, day;
     private long longBeginDate, longEndDate;
@@ -157,25 +157,37 @@ public class SearchFragment extends BasicFragment{
                 else txtDate = txtEndDate;
 
                 month = month + 1;
+                String yearStr = "" + year;
+                if(month < 10) monthStr = "0" + month;
+                else monthStr = "" + month;
+                String dayOfMonthStr = "" + dayOfMonth;
 
                 // Change the text of the ImageView with year/month/day
-                txtDate.setText(year + "/" + month + "/" + dayOfMonth);
+                txtDate.setText(yearStr + "/" + monthStr + "/" + dayOfMonthStr);
 
                 // Change the value of longBeginDate or longEndDate
-                if (imageButton == imageButtonBeginDate) longBeginDate = Long.parseLong("" + year + month + dayOfMonth);
-                else longEndDate = Long.parseLong("" + year + month + dayOfMonth);
+                if (imageButton == imageButtonBeginDate) longBeginDate = Long.parseLong("" + yearStr + monthStr + dayOfMonthStr);
+                else longEndDate = Long.parseLong("" + yearStr + monthStr + dayOfMonthStr);
 
                 Calendar cal = Calendar.getInstance();
                 long currentDate = Long.parseLong("" + cal.get(Calendar.YEAR) + (cal.get(Calendar.MONTH) + 1) + cal.get(Calendar.DAY_OF_MONTH));
                 if(longBeginDate <= currentDate && longEndDate <= currentDate) {
-                    if(isDatesCorrect()) txtWrongDate.setVisibility(View.GONE);
-                    else txtWrongDate.setVisibility(View.VISIBLE);
+                    // If all the conditions return true when the date is set then the button becomes enable
+                    if(isQueryTermEditTextEmpty() && isCheckBoxChecked() && isDatesCorrect()) {
+                        txtWrongDate.setVisibility(View.GONE);
+                        btnSearch.setEnabled(true);
+                    }
+                    else {
+                        txtWrongDate.setVisibility(View.VISIBLE);
+                        txtWrongDate.setText(getResources().getText(R.string.txt_invalid_statement_for_date_first));
+                        btnSearch.setEnabled(false);
+                    }
                 }
-                else txtWrongDate.setVisibility(View.VISIBLE);
-
-                // If all the conditions return true when the date is set then the button becomes enable
-                if(isQueryTermEditTextEmpty() && isCheckBoxChecked() && isDatesCorrect()) btnSearch.setEnabled(true);
-                else btnSearch.setEnabled(false);
+                else if (longBeginDate > currentDate || longEndDate > currentDate) {
+                    txtWrongDate.setVisibility(View.VISIBLE);
+                    txtWrongDate.setText(getResources().getText(R.string.txt_invalid_statement_for_date_second));
+                    btnSearch.setEnabled(false);
+                }
             }
         };
 

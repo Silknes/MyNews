@@ -16,11 +16,12 @@
     <string name="nav_header_icon_nyt_description">NewYork Times icon</string>
     <string name="nav_header_icon_facebook_description">Facebook icon</string>
 
-    <string name="edit_txt_search">QueryTerm*</string>
+    <string name="edit_txt_search">*Enter at least one QueryTerm</string>
     <string name="txt_view_begin_date">Begin Date</string>
     <string name="txt_view_end_date">End Date</string>
     <string name="txt_view_enable_notif">Enable notifications (once per day)</string>
-    <string name="txt_invalid_statement_for_date">*Begin Date must be less than End Date</string>
+    <string name="txt_invalid_statement_for_date_first">*Begin Date must be less than End Date</string>
+    <string name="txt_invalid_statement_for_date_second">*Begin Date and End Date must be less than the date of the day</string>
     <string name="txt_obligation_to_select_one_checkbox">*You have to selected at least one category</string>
     <string name="btn_search">Search</string>
 

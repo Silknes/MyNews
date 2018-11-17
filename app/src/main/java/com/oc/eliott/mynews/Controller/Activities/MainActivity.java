@@ -89,23 +89,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(item.getItemId()){
             case R.id.drawer_top_stories:
                 selectPage(0);
-                Toast.makeText(this, "Top Stories", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.drawer_most_popular:
                 selectPage(1);
-                Toast.makeText(this, "Most Popular", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.drawer_business:
                 selectPage(2);
-                Toast.makeText(this, "Business", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.drawer_it:
                 selectPage(3);
-                Toast.makeText(this, "IT", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.drawer_sport:
                 selectPage(4);
-                Toast.makeText(this, "Sport", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

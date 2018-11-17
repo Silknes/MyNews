@@ -55,7 +55,7 @@ public class DisplayNotificationJob extends Job implements NYTCalls.CallbacksSea
     // Schedule the job every day if there is a network connection
     public static void schedulePeriodic() {
         new JobRequest.Builder(DisplayNotificationJob.TAG)
-                .setPeriodic(TimeUnit.MINUTES.toMillis(1440), TimeUnit.MINUTES.toMillis(5))
+                .setPeriodic(TimeUnit.MINUTES.toMillis(15), TimeUnit.MINUTES.toMillis(5))
                 .setUpdateCurrent(true)
                 .setPersisted(true)
                 .setRequiredNetworkType(JobRequest.NetworkType.CONNECTED)

@@ -40,7 +40,7 @@ public class NYTAdapter extends RecyclerView.Adapter<NYTViewHolder>{
 
     @Override
     public int getItemCount() {
-        if(this.articleList.size() == 0) return this.articleList.size();
+        if(this.articleList.size() >= 0 && this.articleList.size() < 10) return this.articleList.size();
         else return 10;
     }
 

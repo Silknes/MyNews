@@ -3,11 +3,9 @@ package com.oc.eliott.mynews;
 import com.oc.eliott.mynews.Model.Article;
 import com.oc.eliott.mynews.Model.MostPopular.ArticleMostPopular;
 import com.oc.eliott.mynews.Model.Search.ArticleSearch;
-import com.oc.eliott.mynews.Model.TopStories.Multimedium;
 import com.oc.eliott.mynews.Model.TopStories.ArticleTopStories;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
