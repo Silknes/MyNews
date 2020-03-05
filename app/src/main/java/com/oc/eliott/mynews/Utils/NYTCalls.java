@@ -1,13 +1,12 @@
 package com.oc.eliott.mynews.Utils;
 
-import android.support.annotation.Nullable;
-
 import com.oc.eliott.mynews.Model.MostPopular.ResultMostPopular;
 import com.oc.eliott.mynews.Model.Search.ResultSearch;
 import com.oc.eliott.mynews.Model.TopStories.ResultTopStories;
 
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.Nullable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

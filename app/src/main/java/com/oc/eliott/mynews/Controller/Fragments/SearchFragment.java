@@ -4,7 +4,6 @@ package com.oc.eliott.mynews.Controller.Fragments;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -16,10 +15,12 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.oc.eliott.mynews.Controller.Activities.ResultSearchActivity;
+import com.oc.eliott.mynews.Controller.Activities.ResultActivity;
 import com.oc.eliott.mynews.R;
 
 import java.util.Calendar;
+
+import androidx.annotation.NonNull;
 
 public class SearchFragment extends BasicFragment{
 
@@ -30,10 +31,13 @@ public class SearchFragment extends BasicFragment{
 
     public SearchFragment() {}
 
+    public static SearchFragment newInstance(){
+        return new SearchFragment();
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         this.bindView(view);
@@ -233,7 +237,7 @@ public class SearchFragment extends BasicFragment{
             @Override
             public void onClick(View v) {
                 createNewsDeskString();
-                Intent intent = new Intent(getActivity(), ResultSearchActivity.class);
+                Intent intent = new Intent(getActivity(), ResultActivity.class);
                 intent.putExtra("BEGIN_DATE", longBeginDate);
                 intent.putExtra("END_DATE", longEndDate);
                 intent.putExtra("NEWS_DESK", newsDesk);

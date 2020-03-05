@@ -12,8 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Controller.Activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".Controller.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +36,7 @@
                 android:value=".Controller.Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".Controller.Activities.ResultSearchActivity"
+            android:name=".Controller.Activities.ResultActivity"
             android:label="Result Search"
             android:parentActivityName=".Controller.Activities.SearchActivity">
             <meta-data

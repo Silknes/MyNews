@@ -1,13 +1,10 @@
 package com.oc.eliott.mynews.Controller.Fragments;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,17 +26,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RecyclerViewFragment extends Fragment implements NYTCalls.CallbacksTopStories, NYTCalls.CallbacksMostPopular, NYTCalls.CallbacksSearch{
 
     private static final String KEY_POSITION = "KEY_POSITION"; // Use to save the position
 
-    @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.fragment_main_recycler_view)
+    RecyclerView recyclerView;
     private List<Article> articles; // Receive the object return by the API
     private NYTAdapter NYTAdapter;
 
@@ -90,7 +88,7 @@ public class RecyclerViewFragment extends Fragment implements NYTCalls.Callbacks
     // Configure RecyclerView
     public void configureRecyclerView(){
         this.articles = new ArrayList<>();
-        this.NYTAdapter = new NYTAdapter(articles, Glide.with(this));
+        if(getContext() != null) this.NYTAdapter = new NYTAdapter(articles, Glide.with(getContext()));
         this.recyclerView.setAdapter(this.NYTAdapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

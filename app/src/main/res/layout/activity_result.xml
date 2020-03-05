@@ -5,16 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Controller.Activities.ResultSearchActivity">
+    tools:context=".Controller.Activities.ResultActivity"
+    android:id="@+id/linearLayout_fragment_container_result_activity">
 
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/activity_result_search_recycler_view"/>
 
 </LinearLayout>

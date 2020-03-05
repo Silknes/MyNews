@@ -1,15 +1,16 @@
 package com.oc.eliott.mynews.Controller.Activities;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.oc.eliott.mynews.Controller.Fragments.NotificationFragment;
 import com.oc.eliott.mynews.R;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 public class NotificationActivity extends AppCompatActivity {
-    NotificationFragment notificationFragment; // Use to set the NotificationFragment to this Activity
+    NotificationFragment notificationFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +18,10 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         this.configureToolbar();
-        this.configureAndShowSearchNotifFragment();
+        this.configureAndShowDefaultFragment();
     }
 
-    // This method configure the toolbar and add a up button to go back to the MainActivity
+    // Setup Toolbar
     private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -28,8 +29,8 @@ public class NotificationActivity extends AppCompatActivity {
         if(ab != null) ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    // This method set the fragment for this activity
-    private void configureAndShowSearchNotifFragment(){
+    // Display default fragment
+    private void configureAndShowDefaultFragment(){
         notificationFragment = (NotificationFragment) getSupportFragmentManager().findFragmentById(R.id.notification_activity_linear_layout);
         if(notificationFragment == null){
             notificationFragment = new NotificationFragment();

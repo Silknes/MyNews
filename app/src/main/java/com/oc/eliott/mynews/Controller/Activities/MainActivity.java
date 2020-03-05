@@ -1,29 +1,30 @@
 package com.oc.eliott.mynews.Controller.Activities;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.oc.eliott.mynews.R;
 import com.oc.eliott.mynews.Utils.PageAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private Toolbar toolbar;            // Object Toolbar use to configure a new Toolbar (used in method configureToolbar())
-    private DrawerLayout drawerLayout;  // Object DrawerLayout use to configure a new DrawerLayout (used in method configureDrawerLayout())
-
-    private TabLayout tabs; // TabLayout is used to have tab for each category
-    private ViewPager pager; // ViewPager is used to display the result of each call
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private TabLayout tabs;
+    private ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureViewPager();
     }
 
-    // This method make clickable the items of the Toolbar and on click start a new activity
+    // Handle click on Toolbar's items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
@@ -59,20 +60,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    // This method called the file that configure the toolbar menu
+    // Add the menu to the toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
     }
 
-    // This method configure the new toolbar
+    // Setup Toolbar
     private void configureToolbar(){
         this.toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
-    // This method closed the NavigationDrawer when user click on back button
+    // Manage NavigationDrawer behavior
     @Override
     public void onBackPressed() {
         if(this.drawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -82,8 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    // This method make clickable the items of the NavigationDrawer and update the view
-    // of the MainActivity with the good article of each category
+    // Manage click on NavigationDrawer's items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    // This method set a new icon on the toolbar which on click open the NavigationDrawer
+    // Setup NavigationDrawer
     private void configureDrawerLayout(){
         this.drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -118,18 +118,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
     }
 
-    // This method configure the NavigationView and add a listener on each item
+    // Setup NavigationView (Used with NavigationDrawer)
     private void configureNavigationView(){
         NavigationView navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    // Configure the PageAdapter and TabLayout to work together
+    // Setup ViewPager & TabLayout
     private void configureViewPager(){
         pager = findViewById(R.id.activity_main_viewpager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()){});
 
-        tabs = findViewById(R.id.activiy_main_tablayout);
+        tabs = findViewById(R.id.activity_main_tab_layout);
         tabs.setupWithViewPager(pager);
     }
 

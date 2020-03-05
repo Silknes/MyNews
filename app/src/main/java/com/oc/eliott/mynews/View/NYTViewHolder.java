@@ -1,6 +1,5 @@
 package com.oc.eliott.mynews.View;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,8 +8,7 @@ import com.bumptech.glide.RequestManager;
 import com.oc.eliott.mynews.Model.Article;
 import com.oc.eliott.mynews.R;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class NYTViewHolder extends RecyclerView.ViewHolder{
     private TextView section, title, date;
